@@ -12,3 +12,4 @@ exports.check = function(req, res, next){
 	var result = req.query.answer === 'roma' ? 'Correcta' : 'Incorrecta';
 	res.render('quizzes/result', {result: result, answer: answer});
 };
+
