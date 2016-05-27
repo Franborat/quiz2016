@@ -1,0 +1,12 @@
+<p>
+    Las preguntas que coinciden con tu busqueda son:
+</p>
+<table>
+  <% for (var i in quizzes) { %>        
+     <tr>
+        <td>
+           <a href="/quizzes/<%= quizzes[i].id %>"><%= quizzes[i].question %></a>
+        </td>
+     </tr> 
+  <% } %>
+</table>

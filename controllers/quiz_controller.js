@@ -31,6 +31,17 @@ exports.show = function(req, res, next) {
 		});
 };
 
+// GET /quizzes/:texto_a_buscar/search
+exports.search = function(req, res) {
+   models.Quiz.findAll({where: {question: {$like:"%texto_a_buscar%"}}})
+       .then(function(quizzes) {
+       	
+          res.render('quizzes/found.ejs', {quizzes:quizzes});
+       })
+       .catch(function(error) {
+			next(error);
+		});
+};
 
 // GET /quizzes/:id/check
 exports.check = function(req, res) {
