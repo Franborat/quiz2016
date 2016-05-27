@@ -9,4 +9,14 @@
       <input type="submit" value="Comprobar">
     </p>
   </form>
+  <form method="get" action="/quizzes/<%= texto_a_buscar %>/search">        
+    <p>
+      Buscador:
+    </p>
+
+    <p>
+      <input type="text" name="texto_a_buscar" value="<%= texto_a_buscar %>" placeholder="Busqueda" />
+      <input type="submit" value="Buscar">
+    </p>
+  </form>
 </p>
