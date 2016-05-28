@@ -35,12 +35,9 @@ exports.show = function(req, res, next) {
 exports.search = function(req, res) {
    models.Quiz.findAll({where: {question: {$like:"%texto_a_buscar%"}}})
        .then(function(quizzes) {
-       	
-<<<<<<< HEAD
+
           res.render('quizzes/found.ejs', {quizzes:quizzes});
-=======
-          res.render('quizzes/index.ejs', {quizzes:quizzes});
->>>>>>> 9d2be7b95766c85c2cd3b9de8140b8058c210208
+
        })
        .catch(function(error) {
 			next(error);
