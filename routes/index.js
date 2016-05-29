@@ -20,6 +20,8 @@ router.get('/quizzes/:quizId(\\d+)',       quizController.show);
 router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
 router.get('/quizzes/search', quizController.search);
 router.get('/quizzes/:texto_a_buscar/search', quizController.search);
+router.get('/quizzes/new',                 quizController.new);
+router.post('/quizzes',                    quizController.create);
 
 
 module.exports = router;
