@@ -12,6 +12,21 @@ exports.index = function(req, res, next) {
 		});
 };
 
+// Autoload el quiz asociado a quizId
+exports.load = function(req, res, next, quizId) {
+	models.Quiz.findById(quizId)
+  		.then(function(quiz) {
+      		if (quiz) {
+        		req.quiz = quiz;
+        		next();
+      		} else { 
+      			next(new Error('No existe quizId=' + quizId));
+      		}
+        })
+        .catch(function(error) { next(error); });
+};
+
+
 
 // GET /quizzes/:id
 exports.show = function(req, res, next) {
@@ -33,6 +48,7 @@ exports.show = function(req, res, next) {
 
 // GET /quizzes/:texto_a_buscar/search
 exports.search = function(req, res) {
+	var texto_a_buscar = req.query.search;
    models.Quiz.findAll({where: {question: {$like:"%texto_a_buscar%"}}})
        .then(function(quizzes) {
 
