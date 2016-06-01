@@ -17,6 +17,7 @@ router.get('/author', function(req, res, next) {
 
 router.param('quizId', quizController.load); //Autoload quizId
 router.param('userId', userController.load);  // Autoload :userId
+router.param('commentId', commentController.load); //Autoload commentId
 
 
 // Definición de rutas de cuenta
@@ -42,6 +43,7 @@ router.delete('/quizzes/:quizId(\\d+)',    sessionController.loginRequired, quiz
 
 router.get('/quizzes/:quizId(\\d+)/comments/new', sessionController.loginRequired, commentController.new);
 router.post('/quizzes/:quizId(\\d+)/comments',    sessionController.loginRequired, commentController.create);
+router.put('/quizzes/:quizId(\\d+)/comments/:commentId(\\d+)/accept', commentController.accept);
 
 router.get('/quizzes/search', quizController.search);
 router.get('/quizzes/:texto_a_buscar/search', quizController.search);
