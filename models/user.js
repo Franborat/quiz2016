@@ -25,6 +25,13 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         }
+      },
+      { instanceMethods: { //Permite definir metodos de instancia de la clase User
+                           //Los objetos que se intercambian con la BBDD deben ser de la clase User
+          verifyPassword: function (password) {
+            return encryptPassword(password, this.salt) === this.password;
+          }
+        }    
       });
 };
 
