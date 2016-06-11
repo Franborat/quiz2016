@@ -42,6 +42,7 @@ router.delete('/users/:userId(\\d+)',   sessionController.loginRequired,
 
 // Definición de rutas de /quizzes
 router.get('/quizzes',                     	quizController.index);
+router.get('/creditos',                     	quizController.creditos);
 router.get('/quizzes/:quizId(\\d+)',       	quizController.show);
 router.get('/quizzes/:quizId(\\d+)/check', 	quizController.check);
 router.get('/quizzes/new',                 	sessionController.loginRequired, 

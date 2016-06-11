@@ -105,7 +105,7 @@ exports.create = function(req, res, next) {
 // GET /quizzes/:texto_a_buscar/search
 exports.search = function(req, res) {
         var texto_a_buscar = req.query.search;
-   models.Quiz.findAll({where: {question: {$like:"<%=texto_a_buscar%>"}}})
+   models.Quiz.findAll({where: {question: {$like:""+texto_a_buscar+""}}})
        .then(function(quizzes) {
 
           res.render('quizzes/found.ejs', {quizzes:quizzes});
@@ -162,4 +162,11 @@ exports.destroy = function(req, res, next) {
       next(error);
     });
 };
+
+// GET /quizzes
+exports.creditos = function(req, res, next) {
+  res.render('creditos');
+};
+
+
 
