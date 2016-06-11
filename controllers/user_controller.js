@@ -17,6 +17,10 @@ exports.load = function(req, res, next, userId) {
         .catch(function(error) { next(error); });
 };
 
+exports.updateLogoutTime = function() {
+   //
+ };
+
 // MW que permite acciones solamente si al usuario logeado es admin o rl propio usuario.
 exports.ownershipRequired = function(req, res, next){
 

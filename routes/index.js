@@ -18,6 +18,12 @@ router.param('quizId', quizController.load);  // autoload :quizId
 router.param('userId', userController.load);  // autoload :userId
 router.param('commentId', commentController.load);  // autoload :commentId
 
+// Cualquier petición http actualiza el tiempo de logout
+router.get('*',					userController.updateLogoutTime);						
+router.post('*',				userController.updateLogoutTime);
+router.put('*',					userController.updateLogoutTime);
+router.delete('*',				userController.updateLogoutTime);
+
 
 // Definición de rutas de sesion
 router.get('/session',    sessionController.new);     // formulario login
@@ -41,9 +47,9 @@ router.delete('/users/:userId(\\d+)',   sessionController.loginRequired,
 										userController.destroy);  // borrar cuenta
 
 // Definición de rutas de /quizzes
-router.get('/quizzes',                     	quizController.index);
+router.get('/quizzes.:format?',                     	quizController.index);
 router.get('/creditos',                     	quizController.creditos);
-router.get('/quizzes/:quizId(\\d+)',       	quizController.show);
+router.get('/quizzes/:quizId(\\d+).:format?',       	quizController.show);
 router.get('/quizzes/:quizId(\\d+)/check', 	quizController.check);
 router.get('/quizzes/new',                 	sessionController.loginRequired, 
 											quizController.new);

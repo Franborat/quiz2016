@@ -46,8 +46,7 @@ exports.create = function(req, res, next) {
             // La sesión se define por la existencia de: req.session.user
             
 
-            
-            req.session.user = {id:user.id, username:user.username, isAdmin:user.isAdmin};
+            req.session.user = {id:user.id, username:user.username, isAdmin:user.isAdmin, expires:(Date.now() + 120000)};
             res.redirect(redir); // redirección a la raiz
         })
         .catch(function(error) {

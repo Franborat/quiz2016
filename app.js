@@ -46,6 +46,26 @@ app.use(function(req, res, next){
   next();
 });
 
+// Actualizar contador timeout                    
+app.use(function(req, res, next) {
+
+   if(!req.session.user) { // Si no hay usuario logeado
+      next();
+
+   } else if(req.session.user && (req.session.user.expires < Date.now())) {
+      delete req.session.user;
+      next();
+
+   } else if (req.session.user && (req.session.user.expires > Date.now())) { 
+      req.session.user.expires = (Date.now() + 120000);
+      next();
+
+   } else { 
+      next();
+   }
+
+});
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler

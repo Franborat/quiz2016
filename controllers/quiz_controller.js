@@ -35,7 +35,14 @@ exports.ownershipRequired = function(req, res, next){
 exports.index = function(req, res, next) {
 	models.Quiz.findAll()
 		.then(function(quizzes) {
-			res.render('quizzes/index.ejs', { quizzes: quizzes});
+      if(req.format === 'json') {              
+           var string = '';               
+           for (var i in quizzes) {
+              string = string + JSON.stringify(quizzes[i]);
+           }
+           res.send(string); 
+			}else
+      res.render('quizzes/index.ejs', { quizzes: quizzes});
 		})
 		.catch(function(error) {
 			next(error);
@@ -45,11 +52,16 @@ exports.index = function(req, res, next) {
 
 // GET /quizzes/:id
 exports.show = function(req, res, next) {
+  if(req.format === 'json') {
+    res.send(JSON.stringify(req.quiz));
+  }
+
+  else{
 
 	var answer = req.query.answer || '';
-
-	res.render('quizzes/show', {quiz: req.quiz,
+  res.render('quizzes/show', {quiz: req.quiz,
 								answer: answer});
+}
 };
 
 
